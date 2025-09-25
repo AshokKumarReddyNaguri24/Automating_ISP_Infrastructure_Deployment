@@ -1,0 +1,43 @@
+# - name: Configuring link towards R5
+#   hosts: myhosts
+#   gather_facts: no
+#   collections:
+#     - cisco.ios
+
+#   tasks:
+#     - name: No shutdown fa0/1
+#       cisco.ios.ios_interfaces:
+#         config:
+#           - name: FastEthernet0/1
+#             enabled: true
+
+#     - name: Configuring IP address
+#       cisco.ios.ios_l3_interfaces:
+#         config:
+#           - name: FastEthernet0/1
+#             ipv4:
+#               - address: 192.168.1.250/24
+    
+
+
+- name: Configuring the interface towards R5
+  hosts: myhosts
+  gather_facts: no
+  connection: network_cli
+  collections:
+    - cisco.ios
+  
+  tasks:
+    - name: No shutdown for Fa0/0
+      cisco.ios.ios_interfaces:
+        config:
+          - name: FastEthernet0/0
+            enabled: true
+
+    - name: Configuring IP
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: FastEthernet0/0
+            ipv4:
+              - address: 192.168.1.1/24
+        state: merged
