@@ -6,11 +6,11 @@
     - cisco.ios
   
   tasks:
-    - name: No shutdown for Fa0/0
-      cisco.ios.ios_interfaces:
-        config:
-          - name: FastEthernet0/0
-            enabled: true
+  #   - name: No shutdown for Fa0/0
+  #     cisco.ios.ios_interfaces:
+  #       config:
+  #         - name: FastEthernet0/0
+  #           enabled: true
 
     - name: Configuring IP
       cisco.ios.ios_l3_interfaces:

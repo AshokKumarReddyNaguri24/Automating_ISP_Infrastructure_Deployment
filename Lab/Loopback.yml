@@ -5,8 +5,8 @@
     - cisco.ios
   
   tasks:
-    - name: Turn on the interface
+    - name: Turn on the loopback interface
       cisco.ios.ios_config:
         parents: interface Loopback0
         lines:
-          - ip address 1.1.1.1 255.255.255.255
+          - ip address 192.168.64.2 255.255.255.255
