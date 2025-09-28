@@ -1,0 +1,36 @@
+- name: Configuring OSPF
+  hosts: myhosts
+  gather_facts: no
+
+  tasks:
+    - name: Turn up the interfaces
+      cisco.ios.ios_config:
+        parents: "interface {{int_name}}"
+        lines:
+          - "ip address {{int_ip}} {{int_mask}}"
+          - no shutdown
+
+    - name: Configure Loopback
+      cisco.ios.ios_config:
+        parents: interface Loopback0
+        lines:
+          - "ip address {{loopback}} {{l0_mask}}"
+          - no shutdown
+
+    - name: OSPF process
+      cisco.ios.ios_config:
+        parents: "router ospf {{ospf_process}}"
+        lines: 
+          - "router-id {{loopback}}"
+
+    - name: activate ospf on interfaces
+      cisco.ios.ios_config:
+        parents: "interface {{int_name}}"
+        lines:
+          - "ip ospf {{ospf_process}} area {{ospf_area}}"
+    
+    - name: ospf on loopback interfaces
+      cisco.ios.ios_config:
+        parents: interface Loopback0
+        lines:
+          - "ip ospf {{ospf_process}} area {{ospf_area}}"

@@ -1,0 +1,7 @@
+int_name: FastEthernet1/0
+int_ip: 192.168.1.1
+int_mask: 255.255.255.252
+loopback: 1.1.1.1
+l0_mask: 255.255.255.255
+ospf_process: 1
+ospf_area: 0
