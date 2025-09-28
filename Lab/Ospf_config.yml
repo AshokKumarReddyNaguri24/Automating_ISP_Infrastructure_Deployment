@@ -5,10 +5,12 @@
   tasks:
     - name: Turn up the interfaces
       cisco.ios.ios_config:
-        parents: "interface {{int_name}}"
+        parents: "interface {{item.name}}"
         lines:
-          - "ip address {{int_ip}} {{int_mask}}"
+          - "ip address {{item.ip}} {{item.mask}}"
           - no shutdown
+        match: line
+      loop: "{{interfaces}}"
 
     - name: Configure Loopback
       cisco.ios.ios_config:
@@ -16,21 +18,28 @@
         lines:
           - "ip address {{loopback}} {{l0_mask}}"
           - no shutdown
+        match: line
 
     - name: OSPF process
       cisco.ios.ios_config:
         parents: "router ospf {{ospf_process}}"
         lines: 
           - "router-id {{loopback}}"
+        match: line
 
-    - name: activate ospf on interfaces
+    - name: activate ospf and MPLS on interfaces
       cisco.ios.ios_config:
-        parents: "interface {{int_name}}"
+        parents: "interface {{item.name}}"
         lines:
           - "ip ospf {{ospf_process}} area {{ospf_area}}"
+          - mpls ip
+        match: line
+      loop: "{{interfaces}}"
     
-    - name: ospf on loopback interfaces
+    - name: ospf and MPLS on loopback interfaces
       cisco.ios.ios_config:
         parents: interface Loopback0
         lines:
           - "ip ospf {{ospf_process}} area {{ospf_area}}"
+          - mpls ip
+        match: line

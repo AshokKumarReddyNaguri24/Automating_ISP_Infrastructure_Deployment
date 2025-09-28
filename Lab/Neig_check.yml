@@ -1,0 +1,26 @@
+- name: Check OSPF neighborship
+  hosts: myhosts
+  gather_facts: no
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+    - name: Check OSPF neighbors
+      cisco.ios.ios_command:
+        commands:
+          - show ip ospf neighbor
+      register: ospfnei_status
+
+    - name: Check MPLS neighbors
+      cisco.ios.ios_command:
+        commands:
+          - show mpls Forwarding-table
+      register: mplsfib
+    
+    - name: display
+      debug:
+        msg: |
+              ==== OSPF Neighbors ====
+              {{ ospfnei_status.stdout[0] }}
+
+              ==== MPLS Forwarding Table ====
+              {{ mplsfib.stdout[0] }}
