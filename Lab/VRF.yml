@@ -1,0 +1,41 @@
+- name: Configuring VRF
+  hosts: myhosts
+  gather_facts: no
+
+  tasks:
+
+    - name: Configure VRF
+      cisco.ios.ios_vrf:
+        vrfs:
+          - name: "{{item.vrf}}"
+            rd: "{{item.rd}}"
+            route_both:
+              - "{{item.rt_both}}"
+        # match: line
+      loop: "{{vrf_interfaces}}"
+    
+    - name: Assign VRF to the interface
+      cisco.ios.ios_config:
+        parents: "interface {{item.name}}"
+        lines:
+          - "ip vrf forwarding {{item.vrf}}"
+          - "ip address {{item.ip}} {{item.mask}}"
+          - no shutdown
+        # match: line
+      loop: "{{vrf_interfaces}}"
+    
+    - name: Configure ospf for VRF
+      cisco.ios.ios_config:
+        parents: "router ospf {{item.vrf_ospf}} vrf {{item.vrf}}"
+        lines:
+          - "router-id {{item.vrf_ospfid}}"
+        # match: line
+      loop: "{{vrf_interfaces}}"
+
+    - name: Assign the VRF interface to OSPF
+      cisco.ios.ios_config:
+        parents: "interface {{item.name}}"
+        lines: 
+          - "ip ospf {{item.vrf_ospf}} area {{item.vrf_ospf_area}}"
+        match: line
+      loop: "{{vrf_interfaces}}"

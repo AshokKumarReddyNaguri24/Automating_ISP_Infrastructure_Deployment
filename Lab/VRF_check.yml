@@ -1,0 +1,16 @@
+- name: Check the VRF Status
+  hosts: myhosts
+  gather_facts: no
+
+  tasks:
+    - name: Check for vrf details
+      cisco.ios.ios_command:
+        commands:
+          - show vrf brief
+      register: vrf_neighbor
+    
+    - name: Display vrf neighbor
+      debug:
+        msg: |
+              ======VRF Details======
+              {{ vrf_neighbor.stdout[0] }}
