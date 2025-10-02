@@ -3,5 +3,6 @@ This project demonstrates how to use Ansible to configure Cisco IOS routers from
 
 ## This project is expanding by adding mutiple customers and integrating the infrastructure with the AIBots. So, for now please Open LAB folder to check the YAML files of the present deployment with one customer at two locations
 
-<img width="601" height="225" alt="image" src="https://github.com/user-attachments/assets/afb6a4eb-33ca-42ba-b623-f397af3b096b" />
+<img width="602" height="216" alt="image" src="https://github.com/user-attachments/assets/0ebe8926-1310-49d4-af87-9ab425674b23" />
+
 
