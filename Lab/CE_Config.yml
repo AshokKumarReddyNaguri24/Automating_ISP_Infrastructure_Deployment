@@ -1,5 +1,5 @@
-- name: Configuring OSPF
-  hosts: myhosts
+- name: Configuring OSPF on CE Router
+  hosts: CE
   gather_facts: no
 
   tasks:
@@ -20,26 +20,17 @@
           - no shutdown
         match: line
 
-    - name: OSPF process
+    - name: OSPF process on CE router
       cisco.ios.ios_config:
         parents: "router ospf {{ospf_process}}"
         lines: 
           - "router-id {{loopback}}"
         match: line
 
-    - name: activate ospf and MPLS on interfaces
+    - name: activate ospf on CE interfaces
       cisco.ios.ios_config:
         parents: "interface {{item.name}}"
         lines:
           - "ip ospf {{ospf_process}} area {{ospf_area}}"
-          - mpls ip
         match: line
       loop: "{{interfaces}}"
-    
-    - name: ospf and MPLS on loopback interfaces
-      cisco.ios.ios_config:
-        parents: interface Loopback0
-        lines:
-          - "ip ospf {{ospf_process}} area {{ospf_area}}"
-          - mpls ip
-        match: line

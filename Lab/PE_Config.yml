@@ -1,0 +1,113 @@
+- name: Configuring PE routers
+  hosts: PE
+  gather_facts: no
+
+  tasks:
+    - name: Turn up the interfaces
+      cisco.ios.ios_config:
+        parents: "interface {{item.name}}"
+        lines:
+          - "ip address {{item.ip}} {{item.mask}}"
+          - no shutdown
+        match: line
+      loop: "{{interfaces}}"
+
+    - name: Configure Loopback
+      cisco.ios.ios_config:
+        parents: interface Loopback0
+        lines:
+          - "ip address {{loopback}} {{l0_mask}}"
+        match: line
+
+    - name: OSPF process
+      cisco.ios.ios_config:
+        parents: "router ospf {{ospf_process}}"
+        lines: 
+          - "router-id {{loopback}}"
+        match: line
+
+    - name: activate ospf and MPLS on core interfaces
+      cisco.ios.ios_config:
+        parents: "interface {{item.name}}"
+        lines:
+          - "ip ospf {{ospf_process}} area {{ospf_area}}"
+          - mpls ip
+        match: line
+      loop: "{{interfaces}}"
+    
+    - name: ospf on loopback interface
+      cisco.ios.ios_config:
+        parents: interface Loopback0
+        lines:
+          - "ip ospf {{ospf_process}} area {{ospf_area}}"
+        match: line
+
+
+# VRF Configuration
+
+
+    - name: Configure VRF
+      cisco.ios.ios_config:
+        parents: "ip vrf {{item.vrf}}"
+        lines:
+          - "rd {{item.rd}}"
+          - "route-target both {{item.rt_both}}"
+        match: line
+      loop: "{{vrf_interfaces}}"
+    
+    - name: Assign VRF to the interface
+      cisco.ios.ios_config:
+        parents: "interface {{item.name}}"
+        lines:
+          - "ip vrf forwarding {{item.vrf}}"
+          - "ip address {{item.ip}} {{item.mask}}"
+          - no shutdown
+        match: line
+      loop: "{{vrf_interfaces}}"
+    
+    - name: Configure ospf for VRF
+      cisco.ios.ios_config:
+        parents: "router ospf {{item.vrf_ospf}} vrf {{item.vrf}}"
+        lines:
+          - "router-id {{item.vrf_ospfid}}"
+        match: line
+      loop: "{{vrf_interfaces}}"
+
+    - name: Assign the VRF interface to OSPF
+      cisco.ios.ios_config:
+        parents: "interface {{item.name}}"
+        lines: 
+          - "ip ospf {{item.vrf_ospf}} area {{item.vrf_ospf_area}}"
+        match: line
+      loop: "{{vrf_interfaces}}"
+
+
+# BGP for VPNV$ propogation
+
+    - name: Base BGP and neighbors
+      cisco.ios.ios_config:
+        parents: "router bgp {{bgp_as}}"
+        lines:
+          - "bgp log-neighbor-changes"
+          - "bgp router-id {{ loopback }}"          
+          - "neighbor {{neighbor}} remote-as {{neigh_as}}"
+          - "neighbor {{neighbor}} update-source Loopback0"
+        match: line
+      # loop: "{{ vpnv4_neighbors }}"
+
+    - name: Activate vpnv4 AF and send extended communities
+      cisco.ios.ios_config:
+        parents: "router bgp {{bgp_as}}\n address-family vpnv4"
+        lines:
+          - "neighbor {{neighbor}} activate"
+          - "neighbor {{neighbor}} send-community extended"
+        match: line
+      # loop: "{{ vpnv4_neighbors }}"
+
+    - name: Per-VRF IPv4 AF redistribute VRF OSPF into BGP
+      cisco.ios.ios_config:
+        parents: "router bgp {{bgp_as}}\n address-family ipv4 vrf {{item.vrf}}"
+        lines:
+          - "redistribute ospf {{item.vrf_ospf}} vrf {{item.vrf}}"
+        match: line
+      loop: "{{vrf_interfaces}}"

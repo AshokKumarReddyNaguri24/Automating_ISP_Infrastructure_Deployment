@@ -1,0 +1,13 @@
+interfaces:
+  - name: FastEthernet2/0
+    ip: 10.0.2.2
+    mask: 255.255.255.252
+
+  - name: FastEthernet3/0
+    ip: 10.0.4.2
+    mask: 255.255.255.252
+
+loopback: 6.6.6.6
+l0_mask: 255.255.255.255
+ospf_process: 200
+ospf_area: 0

@@ -1,0 +1,31 @@
+interfaces:
+  - name: FastEthernet1/0
+    ip: 10.0.1.1
+    mask: 255.255.255.252
+
+  - name: FastEthernet2/0
+    ip: 10.0.2.1
+    mask: 255.255.255.252
+
+vrf_interfaces:
+  - name: FastEthernet0/0
+    ip: 192.168.1.2
+    mask: 255.255.255.252
+    vrf: Cust_A
+    rd: "100:1"
+    rt_both: "100:1"
+    vrf_ospf: 150
+    vrf_ospf_area: 1
+    vrf_ospfid: 33.33.33.33
+
+loopback: 3.3.3.3
+l0_mask: 255.255.255.255
+ospf_process: 200
+ospf_area: 0
+bgp_as: 65000
+neighbor: 5.5.5.5
+neigh_as: 65000
+
+# if you want end-to-end OSPF adjacency in the same area across multiple sites, you’ll need a sham-link between PEs.
+# Otherwise, just let MP-BGP redistribute and forget about sham-links.
+# the OSPF process IDs on different CE sites don’t have to be the same. They can be 1, 20, 200, whatever. What matters is that they run OSPF with their local PE, and the PE redistributes into MP-BGP
