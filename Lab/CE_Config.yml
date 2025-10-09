@@ -34,3 +34,7 @@
           - "ip ospf {{ospf_process}} area {{ospf_area}}"
         match: line
       loop: "{{interfaces}}"
+
+    - name: Save running-config to startup-config
+      cisco.ios.ios_config:
+        save_when: always

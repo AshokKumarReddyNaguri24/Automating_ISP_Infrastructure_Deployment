@@ -16,7 +16,7 @@ vrf_interfaces:
     rt_both: "100:1"
     vrf_ospf: 150
     vrf_ospf_area: 1
-    vrf_ospfid: 33.33.33.33
+    # vrf_ospfid: 33.33.33.33
 
 loopback: 3.3.3.3
 l0_mask: 255.255.255.255

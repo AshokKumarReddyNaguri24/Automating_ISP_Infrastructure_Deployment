@@ -35,9 +35,20 @@
         match: line
       loop: "{{interfaces}}"
     
+
+    - name: Set MPLS LDP router-id to Loopback
+      cisco.ios.ios_config:
+        parents: []
+        lines:
+          - mpls ldp router-id Loopback 0
+    
     - name: ospf and MPLS on loopback interfaces
       cisco.ios.ios_config:
         parents: interface Loopback0
         lines:
           - "ip ospf {{ospf_process}} area {{ospf_area}}"
         match: line
+        
+    - name: Save running-config to startup-config
+      cisco.ios.ios_config:
+        save_when: always
