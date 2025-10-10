@@ -75,7 +75,7 @@
       cisco.ios.ios_config:
         parents: "router ospf {{item.vrf_ospf}} vrf {{item.vrf}}"
         lines:
-          - "router-id {{loopback}}"
+          - "router-id {{item.vrf_ospfid}}"
         match: line
       loop: "{{vrf_interfaces}}"
 
@@ -112,12 +112,23 @@
 
     - name: Per-VRF IPv4 AF redistribute VRF OSPF into BGP
       cisco.ios.ios_config:
-        parents: "router bgp {{bgp_as}}\n address-family ipv4 vrf {{item.vrf}}"
+        parents: "router bgp {{bgp_as}}"
         lines:
+          - "address-family ipv4 vrf {{item.vrf}}"
           - "redistribute ospf {{item.vrf_ospf}} vrf {{item.vrf}}"
         match: line
       loop: "{{vrf_interfaces}}"
+      tags: redistributeBGP
     
+    - name: redistribute bgp into ospf VRF Cust_A
+      cisco.ios.ios_config:
+        parents: "router ospf {{item.vrf_ospf}} vrf {{item.vrf}}"
+        lines:
+          - "redistribute bgp {{bgp_as}} subnets"
+      loop: "{{vrf_interfaces}}"
+      tags: redistributeOSPF
+
     - name: Save running-config to startup-config
       cisco.ios.ios_config:
         save_when: always
+      tags: save_config

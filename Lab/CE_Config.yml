@@ -34,6 +34,12 @@
           - "ip ospf {{ospf_process}} area {{ospf_area}}"
         match: line
       loop: "{{interfaces}}"
+    
+    - name: Activate ospf on Loopback interfaces
+      cisco.ios.ios_config:
+        parents: interface l0
+        lines:
+          - "ip ospf {{ospf_process}} area {{ospf_area}}"
 
     - name: Save running-config to startup-config
       cisco.ios.ios_config:
