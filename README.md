@@ -52,7 +52,7 @@ The goal is to simulate a service-provider backbone with **OSPF, MPLS, MP-BGP an
 
 ### Clone the repository
 ```bash
-git clone https://github.com/AshokKumarReddyNaguri24/Automating_Network_Infrastructure.git
+git clone https://github.com/AshokKumarReddyNaguri24/Automating_ISP_Infrastructure_Deployment.git
 cd Automating_Network_Infrastructure
 ansible-galaxy collection install cisco.ios
 ```
