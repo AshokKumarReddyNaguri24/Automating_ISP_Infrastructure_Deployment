@@ -130,7 +130,7 @@ In **Phase 2**, this project will evolve into a full **Network Intelligence Plat
 - Integrating a **centralized database** (PostgreSQL / TimescaleDB) to store logs, routes and Ansible run metadata.  
 - Introducing an **AI-driven analytics layer** to correlate network changes, detect anomalies and suggest configuration optimizations automatically.
 
-This will transform the lab into a mini-**AI-assisted Network Operations Center (NOC)** — where Ansible automation meets intelligent observability.
+This will transform the lab into a mini **AI-assisted Network Operations Center (NOC)** — where Ansible automation meets intelligent observability.
 
 ---
 
@@ -143,6 +143,6 @@ This will transform the lab into a mini-**AI-assisted Network Operations Center 
 
 ### Author
 **Ashok Kumar Reddy Naguri** <br>
-Graduate Student | Network Automation | CCNA | DevNet Associate <br>
+Graduate Student | Network Automation | CCNA | DevNet Associate | Automate AI Solutions on Cisco Infrastructure | Fortinet NSE3 <br>
 Boston, MA, USA <br>
 LinkedIn: https://www.linkedin.com/in/ashok-profile/
