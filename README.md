@@ -11,7 +11,7 @@ Each PE supports multiple customer VRFs (e.g., `Cust_A`, `Cust_B`), forming end-
 
 ---
 
-## 🚀 Project Summary
+## Project Summary
 
 This project automates a complete **ISP-grade MPLS L3VPN network** using **Ansible** and **EVE-NG**.
 
@@ -20,7 +20,7 @@ The goal is to simulate a service-provider backbone with **OSPF, MPLS, MP-BGP an
 
 ---
 
-## ⚙️ Features Automated
+## Features Automated
 
 | Feature                    | Description                                                               |
 |----------------------------|---------------------------------------------------------------------------|
@@ -35,7 +35,7 @@ The goal is to simulate a service-provider backbone with **OSPF, MPLS, MP-BGP an
 
 ---
 
-## 🧰 Tools & Environment
+## Tools & Environment
 
 | Tool           | Version / Details |
 |----------------|------------------------------------------|
@@ -48,9 +48,9 @@ The goal is to simulate a service-provider backbone with **OSPF, MPLS, MP-BGP an
 
 ---
 
-## 🪜 Quick Start
+## Quick Start
 
-### 1️⃣ Clone the repository
+### Clone the repository
 ```bash
 git clone https://github.com/AshokKumarReddyNaguri24/Automating_Network_Infrastructure.git
 cd Automating_Network_Infrastructure
@@ -96,7 +96,7 @@ show bgp vpnv4 unicast all summary
 ├── P_config.yml
 ├── PE_Config.yml
 ```
-## 📊 ARA Integration (Ansible Run Analysis)
+## ARA Integration (Ansible Run Analysis)
 
 To monitor and visualize every playbook execution, this project integrates **[ARA](https://ara.recordsansible.org/)** — an Ansible callback plugin that logs, indexes and presents configuration runs via a web interface.
 
