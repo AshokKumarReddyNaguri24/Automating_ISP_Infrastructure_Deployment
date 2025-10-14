@@ -122,7 +122,7 @@ ara-manage runserver
 
 
 ### Author
-** Ashok Kumar Reddy Naguri ** <br>
+**Ashok Kumar Reddy Naguri** <br>
 Graduate Student | Network Automation | CCNA | DevNet Associate <br>
 Boston, MA, USA <br>
 LinkedIn: https://www.linkedin.com/in/ashok-profile/
