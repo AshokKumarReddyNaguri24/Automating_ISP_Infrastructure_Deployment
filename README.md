@@ -108,20 +108,21 @@ ara-manage runserver
 ```
 
 ### Learning Outcomes
-•	Understand full ISP backbone design with OSPF + MPLS + BGP + VRF
-•	Automate multi-stage configurations using Ansible loops and host_vars
-•	Validate MPLS label propagation and L3VPN reachability
-•	Deploy ECMP-based MPLS transport with minimal manual steps
-•	Integrate ARA for post-run configuration tracking
+1. Understand full ISP backbone design with OSPF + MPLS + BGP + VRF
+2. Automate multi-stage configurations using Ansible loops and host_vars
+3. Validate MPLS label propagation and L3VPN reachability
+4. Deploy ECMP-based MPLS transport with minimal manual steps
+5. Integrate ARA for post-run configuration tracking
 
 ### References
-https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/13733-mpls-vpn-basic.html
-[https://medium.com/r/?url=https%3A%2F%2Fara.recordsansible.org%2F](https://ara.recordsansible.org)
-https://docs.ansible.com/ansible/latest/collections/cisco/ios/index.html
-https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_ospf/command/iro-cr-book.html
+1. https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/13733-mpls-vpn-basic.html
+2. [https://medium.com/r/?url=https%3A%2F%2Fara.recordsansible.org%2F](https://ara.recordsansible.org)
+3. https://docs.ansible.com/ansible/latest/collections/cisco/ios/index.html
+4. https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_ospf/command/iro-cr-book.html
 
 
 ### Author
 Ashok Kumar Reddy Naguri
 Graduate Student | Network Automation | CCNA | DevNet Associate
 Boston, MA, USA
+LinkedIn: https://www.linkedin.com/in/ashok-profile/
