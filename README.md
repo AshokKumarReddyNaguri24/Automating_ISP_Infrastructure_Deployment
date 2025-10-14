@@ -1,4 +1,4 @@
-# 🛰️ Automated ISP Infrastructure Deployment
+# Automated ISP Infrastructure Deployment
 **End-to-End Network Automation with Ansible, EVE-NG and MPLS L3VPN**
 
 ---
