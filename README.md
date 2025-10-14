@@ -128,7 +128,6 @@ ara-manage runserver
 
 In **Phase 2**, this project will evolve into a full **Network Intelligence Platform** by:
 - Integrating a **centralized database** (PostgreSQL / TimescaleDB) to store logs, routes and Ansible run metadata.  
-- Using **ARA APIs** for configuration audit and visualization.  
 - Introducing an **AI-driven analytics layer** to correlate network changes, detect anomalies and suggest configuration optimizations automatically.
 
 This will transform the lab into a mini-**AI-assisted Network Operations Center (NOC)** — where Ansible automation meets intelligent observability.
