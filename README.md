@@ -1,5 +1,15 @@
-# Automated ISP Infrastructure Deployment
+# Automating an ISP-Grade MPLS L3VPN Network with Ansible
 **End-to-End Network Automation with Ansible, EVE-NG and MPLS L3VPN**
+
+---
+
+### 🎯 Who this project is for?
+
+This article is designed for:
+- **Network engineers** exploring automation beyond configuration templates.  
+- **CCNA / DevNet Associate / CCNP students** who want to bridge lab concepts with automation frameworks.  
+- **Early-career SREs and infrastructure engineers** learning how to model provider-grade topologies programmatically.  
+- **Automation enthusiasts** aiming to understand how data models, host_vars and modular playbooks simplify ISP-level designs.
 
 ---
 
@@ -113,6 +123,17 @@ ara-manage runserver
 3. Validate MPLS label propagation and L3VPN reachability
 4. Deploy ECMP-based MPLS transport with minimal manual steps
 5. Integrate ARA for post-run configuration tracking
+
+### 🔮 What’s Next (Phase 2)
+
+In **Phase 2**, this project will evolve into a full **Network Intelligence Platform** by:
+- Integrating a **centralized database** (PostgreSQL / TimescaleDB) to store logs, routes and Ansible run metadata.  
+- Using **ARA APIs** for configuration audit and visualization.  
+- Introducing an **AI-driven analytics layer** to correlate network changes, detect anomalies and suggest configuration optimizations automatically.
+
+This will transform the lab into a mini-**AI-assisted Network Operations Center (NOC)** — where Ansible automation meets intelligent observability.
+
+---
 
 ### References
 1. https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/13733-mpls-vpn-basic.html
